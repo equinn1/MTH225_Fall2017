@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage{hyperref}
+
+\begin{document}
+\section{Overview}
+
+In this exercise we will once again use Stan to estimate the second shape parameter 
+of a beta distribution assuming the first parameter is 1.
+
+We will use the same input data.
+
+<<>>=
+df = read.csv('week3_IC2_data.csv')
+@
+Once you have a read a dataframe, it's good practice to use the \texttt{str()} function to examine its structure:
+<<>>=
+str(df)
+@
+
+There are four columns of values, one for each team.  Assign the value of your column to a variable named y.
+
+<<>>=
+y = df$y1     #assign y to be column y1  (if you are team 1)
+
+N = length(y)
+@
+
+Now call Stan
+
+<<>>=                                      #standard setup for Stan
+library(rstan)
+library(bayesplot)
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+
+stanfit = stan("beta_alpha1.stan")         #call stan to fit the model
+
+print(stanfit)                           #print a summary of the results
+
+print(get_stanmodel(stanfit))
+@
+
+<<>>=
+save(stanfit,file='Week3_IC3_stanfit.Rdata')
+@
+
+<<>>=
+Sys.info()[["user"]]
+@
+
+\end{document}

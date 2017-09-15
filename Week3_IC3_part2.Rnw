@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage{hyperref}
+
+\begin{document}
+\section{Overview}
+
+In this exercise we will reload the data structure output by Stan and reexamine it.
+
+<<>>=                                      #standard setup for Stan
+library(rstan)
+library(bayesplot)
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+@
+
+The .Rdata format is an R data archive and may contain multiple R objects of different classes.
+
+<<>>=
+load('Week3_IC3_stanfit.Rdata')
+@
+
+Load doesn't tell us what it loaded.
+
+We can use the \texttt{ls()} command (the R version is a function, so it has parenthesis)
+<<>>=
+ls()
+@
+
+
+
+Now we can process the stanfit object as if it had just been created.  
+
+It's a good idea to print the stanmodel so you know for sure what model file produced this output.
+
+<<>>=                                      #standard setup for Stan
+print(stanfit)                           #print a summary of the results
+
+print(get_stanmodel(stanfit))
+@
+
+<<>>=
+Sys.info()[["user"]]
+@
+
+\end{document}

@@ -12,7 +12,7 @@ This allows us to validate the model (remember George Box's famous dictum that a
 A Bayesian model requires two components:
 \begin{itemize}
 \item The \textbf{likelihood}: A collection of probability models for the outcome, indexed by a parameter
-\item The \textbf{prior}: A probability model for our uncertainty about the value of the parameter
+\item The \textbf{prior}: A probability model for our current state of knowledge about the value of the parameter
 \end{itemize}
 
 \subsection*{Example: predicting the outcome of a baseball game}
@@ -33,7 +33,7 @@ Without loss of generality, we will interpret the parameter $\theta$ as the prob
 
 In this case the Kolmogorov axioms dictate that the probability of the outcome 'Y' must be $1-\theta$.
 
-The other part of our Bayesian model is the \textbf{prior}, which is a probability model for our beliefs about the value of $\theta$ \textit{before we see any data}.
+The other part of our Bayesian model is the \textbf{prior}, which you can think of as a probability model that reflects our current state of knowledge about the parameter $\theta$ (current meaning \textit{before} we see the data at hand).
 
 One commonly chosen prior in this situation is the \textbf{uniform} distribution, for which the probability of $\theta$ falling in the subinterval $[a,b]$ of $[0,1]$ is just $b-a$.
 

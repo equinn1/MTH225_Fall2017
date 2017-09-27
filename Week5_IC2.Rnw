@@ -51,6 +51,19 @@ Suppose $x$ has a Gaussian distribution with parameters $\mu=100$ and $\sigma=15
 \item The probability that $x$ lies between $90$ and $110$
 \end{itemize}
 
+<<>>=
+pnorm(100,100,15)
+
+pnorm(105,100,15)
+
+qnorm(.9,100,15)
+
+qnorm(0.5,100,15)
+
+1-pnorm(95,100,15)
+
+pnorm(110,100,15) - pnorm(90,100,15)
+@
 
 <<>>=
 Sys.info()[["user"]]

@@ -1,0 +1,81 @@
+\documentclass{article}
+
+\begin{document}
+
+
+
+<<>>=
+df <- read.table('body.dat.txt')
+
+str(df)
+
+gender = df$V25
+hcm    = df$V24
+wkg    = df$V23
+
+@
+\subsection*{simple regression}
+\begin{itemize}
+\item $Y$ is weight in kilograms
+\item $X$ is height in centimeters
+\item $e$ is a vector of independent $N(0,\sigma_e)$ random variables
+\end{itemize}
+\par\vspace{0.4 cm}
+\[
+Y = \beta_0 + \beta_1X + e
+\]
+
+<<>>=
+lm1 <- lm(wkg ~ hcm)
+
+print(lm1)
+
+summary(lm1)
+
+plot(lm1$fitted.values~hcm)
+@
+
+\subsection*{one-way anova with two levels}
+\begin{itemize}
+\item $Y$ is weight in kilograms
+\item $X_1$ is $1$ if gender=0, $0$ if gender=1
+\item $X_2$ is $0$ if gender=0, $1$ if gender=1
+\item $e$ is a vector of independent $N(0,\sigma_e)$ random variables
+\end{itemize}
+\par\vspace{0.4 cm}
+\[
+Y = \beta_1X_1 + \beta_2X_2 + e
+\]
+<<>>=
+lm2 <- lm(wkg ~ as.factor(gender))
+
+print(lm2)
+
+summary(lm2)
+
+boxplot(lm2$fitted.values~gender)
+@
+
+\subsection*{one-way acnova with two levels and one covariate}
+\begin{itemize}
+\item $Y$ is weight in kilograms
+\item $X$ is height in centimeters
+\item $X_1$ is $1$ if gender=0, $0$ if gender=1
+\item $X_2$ is $0$ if gender=0, $1$ if gender=1
+\item $e$ is a vector of independent $N(0,\sigma_e)$ random variables
+\end{itemize}
+\par\vspace{0.4 cm}
+\[
+Y = \beta_1X_1 + \beta_2X_2 + \beta X + e
+\]
+<<>>=
+lm3 <- lm(wkg ~ hcm + as.factor(gender))
+
+print(lm3)
+
+summary(lm3)
+
+plot(lm3$fitted.values~hcm)
+@
+
+\end{document}

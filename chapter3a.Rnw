@@ -107,6 +107,12 @@ print(lm2)
 
 summary(lm2)
 
+aov2 <-  aov(wkg ~ as.factor(gender))
+
+print(aov2)
+
+summary(aov2)
+
 boxplot(lm2$fitted.values~gender)
 @
 
@@ -128,6 +134,12 @@ lm3 <- lm(wkg ~ hcm + as.factor(gender))
 print(lm3)
 
 summary(lm3)
+
+aov3 <-  aov(wkg ~ hcm + as.factor(gender))
+
+print(aov3)
+
+summary(aov3)
 
 plot(lm3$fitted.values~hcm)
 @
@@ -172,6 +184,13 @@ lm5 <- lm(wkg ~ hcm*as.factor(gender))
 print(lm5)
 
 summary(lm5)
+
+
+aov5 <-  aov(wkg ~ hcm*as.factor(gender))
+
+print(aov5)
+
+summary(aov5)
 
 plot(lm5$fitted.values~hcm)
 @

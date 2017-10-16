@@ -41,6 +41,8 @@ print(get_stanmodel(stanfit))
 Find the following:
 \par\vspace{0.4 cm}
 \begin{itemize}
+\item How would you reference the posterior draw for \texttt{beta_0}?
+\item How would you reference the posterior draw for \texttt{sigma}?
 \item What is the point estimate for \texttt{beta\_0}?
 \item What is the point estimate for \texttt{sigma}?
 \item What are the bounds of a 95\% confidence interval for \texttt{beta\_0}?

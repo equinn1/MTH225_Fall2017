@@ -1,0 +1,54 @@
+\documentclass{article}
+
+\begin{document}
+
+<<>>=                                      #standard setup for Stan
+library(rstan)
+library(bayesplot)
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+@
+
+<<>>=
+getwd()
+
+df <- read.table('body.dat.txt')
+
+str(df)
+
+gender = df$V25    #gender
+hcm    = df$V24    #height in centimeters
+wkg    = df$V23    #weight in kilograms
+
+@
+
+<<>>=   
+y <- wkg
+N <- length(y)
+
+stanfit = stan("mean_only.stan")         #call stan to fit the model
+@
+
+<<>>=
+print(stanfit)                           #print a summary of the results
+@
+
+<<>>=
+print(get_stanmodel(stanfit))
+@
+
+
+Find the following:
+\par\vspace{0.4 cm}
+\begin{itemize}
+\item What is the point estimate for \texttt{beta\_0}?
+\item What is the point estimate for \texttt{sigma}?
+\item What are the bounds of a 95\% confidence interval for \texttt{beta\_0}?
+\item What are the bounds of a 95\% confidence interval for \texttt{sigma}
+\end{itemize}
+
+
+<<>>=
+Sys.info()[["user"]]
+@
+\end{document}

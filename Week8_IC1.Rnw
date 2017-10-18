@@ -10,15 +10,15 @@ options(mc.cores = parallel::detectCores())
 @
 
 <<>>=
-getwd()
+getwd()                                   #show working directory
 
-df <- read.table('body.dat.txt')
+df <- read.table('body.dat.txt')          #read the body measurements data
 
 str(df)
 
-gender = df$V25    #gender
-hcm    = df$V24    #height in centimeters
-wkg    = df$V23    #weight in kilograms
+gender = df$V25                           #gender
+hcm    = df$V24                           #height in centimeters
+wkg    = df$V23                           #weight in kilograms
 
 @
 
@@ -26,19 +26,19 @@ wkg    = df$V23    #weight in kilograms
 y <- wkg
 N <- length(y)
 
-stanfit = stan("mean_only.stan")         #call stan to fit the model
+stanfit = stan("mean_only.stan")          #call stan to fit the model
 @
 
 <<>>=
-print(stanfit)                           #print a summary of the results
+print(stanfit)                            #print a summary of the results
 @
 
 <<>>=
-print(get_stanmodel(stanfit))
+print(get_stanmodel(stanfit))             #print the Stan model file
 @
 
 
-Find the following:
+Use the output from Stan to answer the following questions: (you can type your answers in the Rnw file)
 \par\vspace{0.4 cm}
 \begin{itemize}
 \item How would you reference the posterior draw for \texttt{beta_0}?

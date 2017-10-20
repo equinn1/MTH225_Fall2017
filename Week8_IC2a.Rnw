@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\begin{document}
+
+\section*{Single-factor ANOVA with two levels - equal variance at each level}
+Data characteristics:
+\par\vspace{0.4 cm}
+\begin{itemize}
+\item Data is classified by two levels of a single factor
+\item Error variance is the same at both levels
+\end{itemize}
+
+<<>>=
+getwd()
+
+df = read.csv('single_factor_anova_two_levels.csv')
+
+str(df)
+
+y = df$y
+
+lvl = as.factor(df$lvl)
+
+@
+
+Run the frequentist (classical) ANOVA:
+
+<<>>=
+aov1<-aov(y~lvl)                        #frequentist 1-way ANOVA
+str(aov1)                               #display the output data structure
+summary(aov1)                           #show ANOVA table
+@
+
+Plot the raw data:
+<<>>=
+boxplot(y~lvl)
+@
+
+<<>>=
+print(aov1$coefficients)
+@
+
+<<>>=
+boxplot(aov1$fitted.values ~ lvl)
+@
+\end{document}

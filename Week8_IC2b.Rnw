@@ -38,8 +38,16 @@ print(stanfit)
 pd = extract(stanfit)
 
 str(pd)
+@
 
-mean(pd$alpha[,2] > pd$alpha[,1])
+Based on the posterior draw, What is the estimated probability that $\alpha_2$ is greater than $\alpha_1$?
+
+Hint:  try \texttt{mean(pd$alpha[,2] > pd$alpha[,1])}
+
+Why do you need a comma before the subscript for $\alpha$?
+
+<<>>=
 
 @
+
 \end{document}

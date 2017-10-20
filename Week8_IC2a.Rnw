@@ -31,16 +31,26 @@ str(aov1)                               #display the output data structure
 summary(aov1)                           #show ANOVA table
 @
 
-Plot the raw data:
+Boxplot of the raw data:
 <<>>=
 boxplot(y~lvl)
 @
+
+Boxplot of the fitted values:
+<<>>=
+boxplot(aov1$fitted.values ~ lvl)
+@
+
+Here are the estimated coefficients from the model.
+
+Most ANOVA software does not display these unless you specifically request them.
+
+Usually you only see the ANOVA summary table with the F tests.
 
 <<>>=
 print(aov1$coefficients)
 @
 
-<<>>=
-boxplot(aov1$fitted.values ~ lvl)
-@
+How would you interpret these coefficients in terms of the weights of males and females?
+
 \end{document}

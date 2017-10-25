@@ -1,0 +1,169 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{float}
+
+\floatstyle{ruled}
+\newfloat{program}{thp}{lop}
+\floatname{program}{Program}
+
+\begin{document}
+
+\section*{Simple regression}
+
+The linear model for a simple regression has the form:
+\par\vspace{0.4 cm}
+\[
+Y = \beta_0 + \beta_1X + e
+\]
+\par\vspace{0.4 cm}
+
+where:
+\begin{itemize}
+\item $Y$ is a vector of observed values for the depenedent variable
+\item $X$ is a continuous predictor
+\item $\beta_0$ is the intercept of the regression line
+\item $\beta_1$ is the slope of the regression line
+\item $e$ is a vector of random noise values
+\end{itemize}
+\par\vspace{0.4 cm}
+
+As usual, the elements of $e$ are assumed to be independently distributed normal random variables wiith mean 
+zero and common standard deviation $\sigma_e$: 
+\[
+e_i \sim N(0,\sigma_e)
+\]
+\par\vspace{0.4 cm}
+
+The implication of a common standard deviation $\sigma_e$ for all of the $e_i$ values is that the individual measurements that comprise $Y$ are equally reliable.
+\par\vspace{0.4 cm}
+
+Data characteristics:
+\begin{itemize}
+\item $Y$ is a vector of observed values of the dependent variable
+\item $X$ is a vector of observed values of a continuous predictor
+\end{itemize}
+\par\vspace{0.4 cm}
+
+For this example, we will use the following values from the body measurements dataset \texttt{body.dat.txt}:
+\begin{itemize}
+\item $y$ is the weight of the subject in kg (column \texttt{V23} in the original data frame)
+\item $x$ is the height of the subject in cm (column \texttt{V24} in the original data frame)
+\end{itemize}
+\par\vspace{0.4 cm}
+Conceptually, knowing the person's height should allow us to make a better prediction of their weight than the overall average weight.
+\par\vspace{0.4 cm}
+
+<<>>=
+getwd()                                   #display the current working directory
+
+df = read.table('body.dat.txt')           #read the table of data values
+
+str(df)                                   #display the structure of the dataframe
+
+y = df$V23                                #y is the weight of the subject in kg
+x = df$V24                                #x is the height of the subject in cm
+
+N = length(y)
+@
+
+\subsection*{Classical or Frequentist Simple Regression}
+
+Run the frequentist (classical) simple regression:
+
+<<>>=
+lm1<-lm(y~x)                              #frequentist or classical simple regression
+
+str(lm1)                                  #show the structure of the lm1 object
+
+summary(lm1)                              #display the results in standard form
+@
+
+How to interpret the summary:
+\par\vspace{0.4 cm}
+The section labeled \texttt{Coefficients:}  lists the estimates of the intercept $\beta_0$ and slopw $\beta_1$.
+\par\vspace{0.4 cm}
+The \texttt{Estimate} column of the row labeled \texttt{(Intercept)} is the estimated value of the intercept, in this case $-105$ with a standard deviation of $7.54$.
+\par\vspace{0.4 cm}
+The interpretation of the intercept is the expected value of $y$ when $x$ is zero.  In this case, it is the expected weight of a person 0 cm tall, which is not very meaningful.  In many cases the intercept does have a meaningful interpretation.
+\par\vspace{0.4 cm}
+The estimate of the slope is $1.02$ with a standard deviation of $.044$.
+\par\vspace{0.4 cm}
+The interpretation of the slope is the change in $y$ for each unit change in $x$.  In this case, it is the number of kg we expect a person's weight to increase for each 1 cm increase in their height. 
+\par\vspace{0.4 cm}
+The entries in the column \texttt{$Pr>|t|$} are the $p$-values.  You can interpret them as the probability of getting an estimate as different from zero as the one we have when the true value of the parameter is zero.
+\par\vspace{0.4 cm}
+The \texttt{Residual standard error:} is an estimate of $\sigma_e$, the standard deviation of the random noise terms.  Its value in this case is \texttt{9.308}.
+\par\vspace{0.4 cm}
+The \texttt{Multiple R-squared:} is the improvement over the mean-only (or intercept only in the regression context) model.  A value of \texttt{0.5145} means that adding height as a predictor explains 51\% of the variation in $Y$ that is not explained by the mean-only model.
+\par\vspace{0.4 cm}
+The multiple R-squared takes values between 0 and 1.
+\par\vspace{0.4 cm}
+
+The larger the multiple R-squared value is, the better $x$ is at predicting $y$.
+\par\vspace{0.4 cm}
+Another way to think of the multiple R-squared is the percent improvement over the mean-only model.  The residual standard error for this model is 51\% of the residual standard error from the mean-only model.
+\par\vspace{0.4 cm}
+If $x$ is not a very good predictor for $y$, the multiple R-squared value will be small.  
+\par\vspace{0.4 cm}
+If $y$ is a perfect linear function of $x$, the multiple R-squared value will be one.
+\begin{figure}[H]
+  \begin{subfigure}{.5\textwidth}
+  <<simplerega, echo=TRUE, results='asis', fig.width=5, fig.height=5, fig.path="graphics/plot", dev='png'>>=
+  plot(y~x,ylim=c(40,120))
+  @
+  \caption{The input data \label{fig:test-a}}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+  <<simpleregb, echo=TRUE, results='asis', fig.width=5, fig.height=5, fig.path="graphics/plot", dev='png'>>=
+  plot(lm1$fitted.values ~ x,ylim=c(40,120))
+  @
+  \caption{The fitted values. \label{fig:test-b}}
+  \end{subfigure}
+\caption{Simple regression - data and fitted values. \label{fig:test}}
+\end{figure}
+
+The \texttt{fitted.values} from the regression will always lie in a perfect straight line.  This is the part of the model corresponding to
+\[
+\beta_0 + \beta_1X
+\]
+which you can think of as the "signal" in the data.
+\par\vspace{0.4 cm}
+The deviations from the perfect straight line of the \texttt{fitted.values} are called the \textbf{residuals}.  They represent the "noise" part of the data.
+\par\vspace{0.4 cm}
+You can view the regression model as an attempt to separate the variation in $y$ into "signal" and "noise".
+\par\vspace{0.4 cm}
+It is good practice to plot the residuals against $x$ to reveal any outliers and systematic patterns.
+\par\vspace{0.4 cm}
+In real life, outiers are often the result of mistakes in recording the data.
+\par\vspace{0.4 cm}
+Furthermore, if it is not due to a data recording mistake, an outlier can provide valuable information on how to improve your model.  If you can explain why that point is so different from the others, you may learn important things about the pnenomenon you are modeling.
+\par\vspace{0.4 cm}
+\begin{figure}[H]
+  <<simpleregc, echo=TRUE, results='asis', fig.width=5, fig.height=5, fig.path="graphics/plot", dev='png'>>=
+  plot(lm1$residuals ~ x)
+  @
+\caption{Simple regression - residuals. \label{fig:test}}
+\end{figure}
+
+\subsection*{Bayesian Regression}
+
+
+Call STAN
+<<>>=
+library(rstan)                                #make sure rstan is available
+rstan_options(auto_write = TRUE)              #use multiple cores
+options(mc.cores = parallel::detectCores())   #if we have them
+stanfit<-stan("simple_regression.stan")       #call STAN using defaults
+@
+
+<<>>=
+print(stanfit)
+
+pd = extract(stanfit)
+
+str(pd)
+@
+
+
+\end{document}

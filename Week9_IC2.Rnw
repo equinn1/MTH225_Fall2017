@@ -109,13 +109,13 @@ If $x$ is not a very good predictor for $y$, the multiple R-squared value will b
 If $y$ is a perfect linear function of $x$, the multiple R-squared value will be one.
 \begin{figure}[H]
   \begin{subfigure}{.5\textwidth}
-  <<simplerega, echo=TRUE, results='asis', fig.width=5, fig.height=5, fig.path="graphics/plot", dev='png'>>=
+  <<simplerega, echo=TRUE, results='asis', fig.width=5, fig.height=5>>=
   plot(y~x,ylim=c(40,120))
   @
   \caption{The input data \label{fig:test-a}}
   \end{subfigure}
   \begin{subfigure}{.5\textwidth}
-  <<simpleregb, echo=TRUE, results='asis', fig.width=5, fig.height=5, fig.path="graphics/plot", dev='png'>>=
+  <<simpleregb, echo=TRUE, results='asis', fig.width=5, fig.height=5>>=
   plot(lm1$fitted.values ~ x,ylim=c(40,120))
   @
   \caption{The fitted values. \label{fig:test-b}}
@@ -140,7 +140,7 @@ In real life, outiers are often the result of mistakes in recording the data.
 Furthermore, if it is not due to a data recording mistake, an outlier can provide valuable information on how to improve your model.  If you can explain why that point is so different from the others, you may learn important things about the pnenomenon you are modeling.
 \par\vspace{0.4 cm}
 \begin{figure}[H]
-  <<simpleregc, echo=TRUE, results='asis', fig.width=5, fig.height=5, fig.path="graphics/plot", dev='png'>>=
+  <<simpleregc, echo=TRUE, results='asis', fig.width=5, fig.height=5>>=
   plot(lm1$residuals ~ x)
   @
 \caption{Simple regression - residuals. \label{fig:test}}

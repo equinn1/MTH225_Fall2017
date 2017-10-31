@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{float}
+
+\floatstyle{ruled}
+\newfloat{program}{thp}{lop}
+\floatname{program}{Program}
+
+\begin{document}
+\section*{MTH225 Fall2017 Midterm - Problem 2 - Parameter Estimation}
+Because daily rainfall amounts are nonnegative, they are sometimes modeled using a gamma distribution.
+\par\vspace{0.3 cm}
+The dataset \texttt{taunton\_rainfall.csv} records 100 years of rainfall amounts on days with measurable rainfall.
+\par\vspace{0.3 cm}
+Days without measurable rainfall are omitted.
+\par\vspace{0.3 cm}
+Our objective is to fit a gamma distribution to the data with Stan, and compare the distribution generated from the posterior to the data.
+\par\vspace{0.3 cm}
+\begin{itemize}
+\item First read the \texttt{taunton\_rainfall.csv} dataset.
+\item Produce a boxplot of the rainfall amount
+\item The units are hundredths of an inch.  Remove any suspiciously high values.
+\item Run Stan with the \texttt{gamma.stan} model file.  
+\item There is an example of gamma estimation in \texttt{example\_programs.html}
+\item Use the posterior draw to generate a sample of 4,000 gamma observations called \texttt{yp}
+\item Use the \texttt{plot(density(y))} function to graph the density function of the data
+\item Use the \texttt{lines(density(yp))} function to overlay the graph of the generated data
+\item Use \texttt{quantile(y,c(.01,.025,.5,.1,.2,.5,.8,.9,.95,.975,.99))} for \texttt{y}. 
+\item Use \texttt{quantile(yp,c(.01,.025,.5,.1,.2,.5,.8,.9,.95,.975,.99))} for \texttt{yp}
+\end{itemize}
+\par\vspace{0.3 cm}
+Grading rubric:
+\par\vspace{0.3 cm}
+\begin{itemize}
+\item Read the data:                  1 point
+\item Remove extreme values, if any:  1 point
+\item Boxplot:                        1 point
+\item Run Stan:                       1 point
+\item Extract the posterior draw:     1 point
+\item Generate \texttt{yp} using the posterior draw:  1 point
+\item Plot the density of \texttt{y}
+\item Overlay the density of \texttt{yp}
+\item Print the requested quantiles of \texttt{y}
+\item Print the requested quantiles of \texttt{yp}
+\end{itemize}
+\par\vspace{0.3 cm}
+Total points possible: 10
+\par\vspace{0.3 cm}
+There will be a 1 point deduction if the program does not display the user name:
+<<>>=
+Sys.info()[["user"]]
+@
+
+\end{document}

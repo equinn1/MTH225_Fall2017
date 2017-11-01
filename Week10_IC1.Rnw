@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{float}
+\floatstyle{ruled}
+\newfloat{program}{thp}{lop}
+\floatname{program}{Program}
+
+\begin{document}
+
+\section*{Multiple regression - in-class assignment}
+
+Previously we used the 2009 EPA highway mileage data in \texttt{epa.csv} with several linear models:
+\par\vspace{0.3 cm}
+\begin{itemize}
+\item A one-way ANOVA with two levels, car and truck
+\item A simple regression with vehicle weight in units of 1,000 pounds
+\item A covariance analysis with car/truck as a factor and weight as a continuous predictor
+\end{itemize}
+\par\vspace{0.3 cm}
+The obective of this assignment is to add a (classical) multiple regression model to the list.
+\par\vspace{0.3 cm}
+The predictors will be weight in 1,000 pound units (\texttt{etw/1000}) and horsepower (\texttt{rhp}).
+\par\vspace{0.3 cm}
+You should start with the frequentist simple regression program link in \texttt{example\_programs.html} and modify it to add horsepower as a predictor.
+\par\vspace{0.3 cm}
+\begin{itemize}
+\item  You should restrict the data to highway mileage only
+\item  You should include a boxplot of the data
+\item  Your output should include plots of the residuals against each predictor
+\item  Your result should include an interpretation of the coefficients, that is, what is the meaning of each of them in the context of this data.
+\end{itemize}
+
+\end{document}

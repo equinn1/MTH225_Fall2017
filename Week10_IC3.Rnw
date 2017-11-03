@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{float}
+\floatstyle{ruled}
+\newfloat{program}{thp}{lop}
+\floatname{program}{Program}
+
+\begin{document}
+
+\section*{Covariance analysis - in-class assignment}
+
+Use the body measurements data \texttt{body.dat.txt} to answer the following questions:
+\par\vspace{0.3 cm}
+How do gender and stature (height) influence weight?
+\par\vspace{0.3 cm}
+\begin{itemize}
+\item Is gender alone a significant predictor of weight?
+\item Is stature alone a significant predictor of weight?
+\item When both gender and stature are included as predictors, are both significant?
+\item Is the slope for stature the same for males and females?
+\end{itemize}
+\par\vspace{0.3 cm}
+Your output should include boxplots of weight by gender and height, and similar plots of the residuals from your model(s).
+
+
+\end{document}

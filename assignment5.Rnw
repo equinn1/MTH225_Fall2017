@@ -1,0 +1,33 @@
+\documentclass{article}
+
+\begin{document}
+
+\section*{Assignment5 - Estimating the mean of a normal population (frequentist)}
+In this exercise, our goal is to use a single sample from a normal population to compute a point 
+estimate and interval estimate (confidence interval) for the mean $\mu$.
+\par\vspace{0.3 cm}
+The data is the famous eight schools study of the effectiveness of SAT prep courses.
+\par\vspace{0.3 cm}
+That study compared the SAT scores for students who took a preparation course prior to taking the SAT to the scores of those who did not.
+\par\vspace{0.3 cm}
+The data consists of the difference in the mean SAT scores for those two groups, and an estimated standard error of the mean.
+\par\vspace{0.3 cm}
+(Recall that the standard error of the mean is the population standard error, divided by the square root of the sample size $n$.)
+\par\vspace{0.3 cm}
+Use one of the \texttt{.Rnw} files in the section of the \texttt{example\_programs.html} file under the task \textbf{Estimate the mean of a normal}
+\par\vspace{0.3 cm}
+You can find the data in the spreadsheet \texttt{eight_schools.xlsx}
+\par\vspace{0.3 cm}
+For this exercise, ignore the standard error of the estimate data and treat the measurements as if they all came from a single normal population with mean $\mu$ and standard deviation $\sigma$.
+\par\vspace{0.3 cm}
+Your solution should include:
+\begin{itemize}
+\item A boxplot of the data 
+\item The mean effect of preparation 
+\item The standard deviation of the preparation effect
+\item A 95\% confidence interval for the mean effect of preparation
+\item A brief statement about what the confidence interval tells you in the context of this problem
+\end{itemize}
+
+
+\end{document}

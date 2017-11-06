@@ -1,0 +1,22 @@
+\documentclass{article}
+
+\begin{document}
+
+\section*{Assignment4 - Estimating the mean of a normal population (frequentist)}
+In this exercise, our goal is to use a single sample from a normal population to compute a point 
+estimate and interval estimate (confidence interval) for the mean $\mu$ and standard deviation $\sigma$.
+\par\vspace{0.3 cm}
+For the data, use the petal width values of the setosa species in the \texttt{iris} dataset.
+\par\vspace{0.3 cm}
+Use one of the \texttt{.Rnw} files in the section of the \texttt{example\_programs.html} file under the task \textbf{Estimate the mean of a normal}
+\par\vspace{0.3 cm}
+Your solution should include:
+\begin{itemize}
+\item A boxplot of the setosa petal widths
+\item The mean of the setosa petal widths
+\item The standard deviation of the petal widths
+\item A 95\% confidence interval for the mean
+\end{itemize}
+
+
+\end{document}

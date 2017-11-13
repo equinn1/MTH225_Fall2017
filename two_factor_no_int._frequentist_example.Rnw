@@ -1,0 +1,22 @@
+\documentclass{article}
+
+\begin{document}
+
+<<>>=
+epa = read.csv("epa.csv")
+str(epa)
+@
+
+<<>>=
+boxplot(epa$mpg~epa$C.H+epa$car.truck)
+@
+
+Two-factor ANOVA without interaction
+<<>>=
+
+aov1 = aov(mpg~C.H+car.truck,data=epa)
+
+summary(aov1)
+@
+
+\end{document}

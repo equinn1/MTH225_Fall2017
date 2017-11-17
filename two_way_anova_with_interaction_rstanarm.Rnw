@@ -1,0 +1,53 @@
+\documentclass{article}
+
+\begin{document}
+
+<<>>=
+data("weightgain",package="HSAUR3")
+str(weightgain)
+
+weightgain
+@
+
+<<>>=
+boxplot(weightgain$weightgain~weightgain$type+weightgain$source)
+@
+
+Just to see what reordering the 'by' variables gives
+
+<<>>=
+boxplot(weightgain$weightgain~weightgain$source+weightgain$type)
+@
+
+
+Bayesian two-way ANOVA with interaction: 
+
+Predicting weightgain from:
+\begin{itemize}
+\item Amount of protein in their diet:  two levels, high or low
+\item Source of protein: two levels, beef or cereal
+\end{itemize}
+
+Bayesian model
+<<>>=
+library(rstanarm)                                #make sure rstanarm is available
+
+Bayesian_aov <- stan_aov(weightgain ~ source * type, data = weightgain, 
+                  prior = R2(location = 0.5), adapt_delta = 0.999)
+
+Bayesian_aov
+@
+
+<<>>=
+
+prior_summary(Bayesian_aov)
+
+posterior_interval(Bayesian_aov)
+@
+
+
+<<>>=
+Sys.info()[["user"]]
+@
+
+\end{document}

@@ -1,0 +1,41 @@
+\documentclass{article}
+
+\begin{document}
+\section*{Two-factor ANOVA with interaction - frequentist}
+
+<<>>=
+data("weightgain",package="HSAUR3")
+str(weightgain)
+
+weightgain
+@
+
+<<>>=
+boxplot(weightgain$weightgain~weightgain$type+weightgain$source)
+@
+
+Just to see what reordering the 'by' variables gives
+
+<<>>=
+boxplot(weightgain$weightgain~weightgain$source+weightgain$type)
+@
+
+
+Frequentist two-way ANOVA with interaction: 
+
+Predicting weightgain from:
+\begin{itemize}
+\item Amount of protein in their diet:  two levels, high or low
+\item Source of protein: two levels, beef or cereal
+\end{itemize}
+
+<<>>=
+frequentist_aov = aov(weightgain$weightgain~weightgain$source*weightgain$type)
+
+summary(frequentist_aov)
+
+round(coef(frequentist_aov),3)
+@
+
+
+\end{document}

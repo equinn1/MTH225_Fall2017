@@ -4,6 +4,7 @@
 \section*{Two-factor ANOVA with interaction - frequentist}
 
 <<>>=
+library(HSAUR3)
 data("weightgain",package="HSAUR3")
 str(weightgain)
 
@@ -35,7 +36,22 @@ frequentist_aov = aov(weightgain$weightgain~weightgain$source*weightgain$type)
 summary(frequentist_aov)
 
 round(coef(frequentist_aov),3)
+
+tapply(weightgain$weightgain,weightgain$source*weightgain$type,mean)
 @
 
-
+<<>>=
+ones = rep(1,nrow(weightgain))
+sd(weightgain$weightgain)                                      #sdev
+summary(lm(weightgain$weightgain~ones-1))
+sum(residuals(lm(weightgain$weightgain~ones-1))^2)             #mean-only rss
+summary(lm(weightgain~source,data=weightgain))                 #one-way ANOVA with source
+sum(residuals(lm(weightgain~source,data=weightgain))^2)        #rss
+summary(lm(weightgain~type,data=weightgain))                   #one-way ANOVA with type
+sum(residuals(lm(weightgain~type,data=weightgain))^2)          #rss
+summary(lm(weightgain~source+type,data=weightgain))            #two-way ANOVA no interaction
+sum(residuals(lm(weightgain~source+type,data=weightgain))^2)   #rss
+summary(lm(weightgain~source*type,data=weightgain))            #two-way ANOVA interaction
+sum(residuals(lm(weightgain~source*type,data=weightgain))^2)   #rss
+@
 \end{document}

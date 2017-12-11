@@ -75,6 +75,38 @@ F-statistic: 109.5 on 1 and 198 DF,  p-value: < 2.2e-16
 </div>
 </div>
 </div>
+<h2><a name="multreg"></a>Multiple regression</h2>
+<div class="chunk">
+<div class="rcode">
+<div class="source">
+<pre class="knitr r"><span class="functioncall">lm1 <- lm(read~write+math,data=hsb2)
+</pre>
+</div>
+<div class="output">
+<pre class="knitr r">
+
+Call:
+lm(formula = read ~ write + math, data = hsb2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-16.9930  -4.5995  -0.1821   4.7637  21.1790 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  7.54160    3.26819   2.308   0.0221 *  
+write        0.32840    0.06958   4.720 4.47e-06 ***
+math         0.51965    0.07040   7.382 4.29e-12 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 7.318 on 197 degrees of freedom
+Multiple R-squared:  0.4956,	Adjusted R-squared:  0.4905 
+F-statistic:  96.8 on 2 and 197 DF,  p-value: < 2.2e-16
+</pre>
+</div>
+</div>
+</div>
 <h2><a name="1way3lvl"></a>One-way ANOVA - 3 levels</h2>
 <div class="chunk">
 <div class="rcode">
